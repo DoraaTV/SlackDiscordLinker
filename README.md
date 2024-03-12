@@ -2,8 +2,10 @@
 A simple slack/discord channels linker
 
 Use :
-> npm init -y
-> npm install (all prerequisite)
+```
+npm init -y
+npm install (all prerequisite)
+```
 
 Prerequisite :
 - @slack/bolt
