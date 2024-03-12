@@ -11,6 +11,8 @@ dotenv.config();
 
 /*
 *  Initialisation de l'application Slack
+
+*  Slack app initialization
 */
 
 const app = new App({
@@ -28,6 +30,8 @@ const app = new App({
 
 /*
 *  Initialisation du bot Discord
+
+*  Discord bot initialization
 */
 
 bot.commands = new discord.Collection();
@@ -41,6 +45,9 @@ bot.on('ready', () => {
 /*
 *  Event Listener de Slack, permet de lire les messages recu d'un salon specifique et de renvoyer sur Discord
 *  le message recu avec le nom et l'avatar de l'utilisateur Slack
+
+*  Slack event listener, allows to read messages from a specific channel and send them to Discord
+*  the received message with the name and avatar of the Slack user
 */
 
 app.event('message', async ({ event, client }) => {
@@ -70,8 +77,10 @@ app.event('message', async ({ event, client }) => {
 /* 
 *  Event Listener de Discord, permet de lire les messages recu d'un salon specifique et de renvoyer sur Slack
 *  le message recu avec le nom et l'avatar de l'utilisateur Discord
-*/
 
+*  Discord event listener, allows to read messages from a specific channel and send them to Slack
+*  the received message with the name and avatar of the Discord user
+*/
 
 bot.on('messageCreate', async message => {
 
@@ -85,23 +94,15 @@ bot.on('messageCreate', async message => {
       };
 
       try {
-          const r = await fetch("https://slack.com/api/chat.postMessage", {
-              method: "POST",
-              body: JSON.stringify(payload),
-              headers: {
-                  "Content-Type": "application/json; charset=utf-8",
-                  "Content-Length": payload.length,
-                  Authorization: `Bearer ${config.slacktoken}`,
-                  Accept: "application/json",
-              },
-          })
-          if (!r.ok) {
-              throw new Error(`Server error ${res.status}`);
-          }
-          return r.json()
-      }
-      catch(e) {
-          console.error(e)
+          const result = await app.client.chat.postMessage({
+              token: config.slacktoken,
+              channel: payload.channel,
+              username: payload.username,
+              icon_url: payload.icon_url,
+              text: payload.text
+          });
+      } catch (error) {
+          console.error(error);
       }
   }
 })
