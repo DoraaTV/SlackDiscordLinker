@@ -51,6 +51,7 @@ bot.on('ready', () => {
 */
 
 app.event('message', async ({ event, client }) => {
+  if (event.subtype === "bot_message" || event.subtype === "message_changed") return;
   const username = await client.users.info({token : config.slacktoken, user: event.user});
   const avatar = await client.users.profile.get({token : config.slacktoken, user: event.user});
 
@@ -60,8 +61,14 @@ app.event('message', async ({ event, client }) => {
   if (event.subtype === "message_changed" || event.subtype === "message_deleted") return;
   if (event.subtype === "bot_message") return;
 
+  let attachments = "";
+  if (event.files) {
+    for (let i = 0; i < event.files.length; i++) {
+      attachments += "\n" + event.files[i].url_private;
+    }
+  }
   const payload = {
-      content: event.text,
+      content: (event.text ? event.text : "Empty message") + (attachments ? attachments : ""),
       avatar_url: avatar.profile.image_192,
       username: username.user.profile.display_name_normalized,
   }
@@ -86,11 +93,19 @@ bot.on('messageCreate', async message => {
 
   if (message.channel.id === config.discordChannelGeneral || message.channel.parentId === config.discordChannelGeneral) {
       if (message.author.bot) return;
+      let attachments = "";
+      if (message.attachments.size > 0) {
+        let i = 0;
+        for (let attachment of message.attachments.values()) {
+          i++;
+          attachments += "\n<" + attachment.url + `| File ${i} link>`;
+        }
+      }
       const payload = {
           channel: config.slackChannelGeneral,
           username: message.member.displayName,
           icon_url: message.author.displayAvatarURL(),
-          text: message.content
+          text: (message.content ? message.content : " ") + (attachments ? attachments : ""),
       };
 
       try {
