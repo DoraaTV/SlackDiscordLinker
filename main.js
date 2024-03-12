@@ -46,8 +46,8 @@ bot.on('ready', () => {
 *  Event Listener de Slack, permet de lire les messages recu d'un salon specifique et de renvoyer sur Discord
 *  le message recu avec le nom et l'avatar de l'utilisateur Slack
 
-*  Slack event listener, allows to read messages from a specific channel and send them to Discord
-*  the received message with the name and avatar of the Slack user
+*  Slack's Event Listener reads messages received from a specific room and sends them back to Discord.
+*  the message received with the Slack user's name and avatar
 */
 
 app.event('message', async ({ event, client }) => {
@@ -85,8 +85,8 @@ app.event('message', async ({ event, client }) => {
 *  Event Listener de Discord, permet de lire les messages recu d'un salon specifique et de renvoyer sur Slack
 *  le message recu avec le nom et l'avatar de l'utilisateur Discord
 
-*  Discord event listener, allows to read messages from a specific channel and send them to Slack
-*  the received message with the name and avatar of the Discord user
+*  Discord's Event Listener reads messages received from a specific room and sends them back to Slack.
+*  the message received with the Discord user's name and avatar
 */
 
 bot.on('messageCreate', async message => {
