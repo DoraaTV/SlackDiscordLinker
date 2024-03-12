@@ -41,4 +41,6 @@ Installing :
 - Don't forget to create a file named config.js and replace all data to your own data, tokens, channels id, etc
 
 - When all done, use :
-> node main.js
+```
+node main.js
+```
