@@ -36,6 +36,8 @@ Installing :
  
 - Also you must subscribe to the event [message.channels](https://api.slack.com/events/message.channels) on behalf of users
 
+- Create a discord webhook on the channel you want to listen to and save it in a config.js as same as the config.exemple.js
+
 - Don't forget to create a file named config.js and replace all data to your own data, tokens, channels id, etc
 
 - When all done, use :
