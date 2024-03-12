@@ -78,7 +78,7 @@ bot.on('messageCreate', async message => {
   if (message.channel.id === config.discordChannelGeneral) {
       if (message.author.bot) return;
       const payload = {
-          channel: "general",
+          channel: config.slackChannelGeneral,
           username: message.member.displayName,
           icon_url: message.author.displayAvatarURL(),
           text: message.content
