@@ -34,5 +34,7 @@ Installing :
  
 - Also you must subscribe to the event [message.channels](https://api.slack.com/events/message.channels) on behalf of users
 
+- Don't forget to create a file named config.js and replace all data to your own data, tokens, channels id, etc
+
 - When all done, use :
 > node main.js
