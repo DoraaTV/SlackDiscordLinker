@@ -84,7 +84,7 @@ app.event('message', async ({ event, client }) => {
 
 bot.on('messageCreate', async message => {
 
-  if (message.channel.id === config.discordChannelGeneral) {
+  if (message.channel.id === config.discordChannelGeneral || message.channel.parentId === config.discordChannelGeneral) {
       if (message.author.bot) return;
       const payload = {
           channel: config.slackChannelGeneral,
