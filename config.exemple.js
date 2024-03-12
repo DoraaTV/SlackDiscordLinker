@@ -3,10 +3,10 @@ const config = {
     slacktoken: "SLACK BOT TOKEN",
     slacksigning: "SLACK SIGNING SECRET",
     app_token: "SLACK APP LEVEL TOKEN",
-    slackChannelGeneral: "ID DU SALON SLACK",
-    discordChannelGeneral: "ID DU SALON DISCORD",
-    webHookDiscord: "LIEN DU WEBHOOK DISCORD",
-    webHookSlack: "LIEN DU WEBHOOK SLACK"
+    slackChannelGeneral: "SLACK CHANNEL ID",
+    discordChannelGeneral: "DISCORD CHANNEL ID",
+    webHookDiscord: "LINK TO THE DISCORD WEBHOOK",
+    webHookSlack: "LINK TO THE SLACK WEBHOOK"
   };
   
   export { config };
