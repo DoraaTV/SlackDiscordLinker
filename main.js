@@ -68,7 +68,7 @@ app.event('message', async ({ event, client }) => {
     }
   }
   const payload = {
-      content: (event.text ? event.text : "Empty message") + (attachments ? attachments : ""),
+      content: (event.text ? event.text : "Files : ") + (attachments ? attachments : ""),
       avatar_url: avatar.profile.image_192,
       username: username.user.profile.display_name_normalized,
   }
