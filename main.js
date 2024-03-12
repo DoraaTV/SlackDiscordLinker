@@ -101,13 +101,14 @@ bot.on('messageCreate', async message => {
           attachments += "\n<" + attachment.url + `| File ${i} link>`;
         }
       }
+
       const payload = {
           channel: config.slackChannelGeneral,
           username: message.member.displayName,
           icon_url: message.author.displayAvatarURL(),
           text: (message.content ? message.content : " ") + (attachments ? attachments : ""),
       };
-
+      
       try {
           const result = await app.client.chat.postMessage({
               token: config.slacktoken,
